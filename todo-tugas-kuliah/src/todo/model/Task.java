@@ -1,9 +1,12 @@
 package todo.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 /** Data satu tugas kuliah. (Anggota 1) */
 public class Task {
+    public static final DateTimeFormatter DEADLINE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private int id;
     private String title;
     private String course;
@@ -13,6 +16,7 @@ public class Task {
     private String notes;
 
     public Task(String title, String course, LocalDate deadline, Priority priority, String notes) {
+        this.id = Integer.parseInt(UUID.randomUUID().toString().substring(0, 7), 16);
         this.title = title;
         this.course = course;
         this.deadline = deadline;
