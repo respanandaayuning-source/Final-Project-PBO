@@ -2,7 +2,7 @@ package todo.model;
 
 /** Prioritas tugas. (Anggota 1) */
 public enum Priority {
-    TINGGI("Tinggi", 3), SEDANG("Sedang", 2), RENDAH("Rendah", 1);
+    HIGHT("Tinggi", 3), MEDIUM("Sedang", 2), LOW("Rendah", 1);
 
     private final String label;
     private final int level;
