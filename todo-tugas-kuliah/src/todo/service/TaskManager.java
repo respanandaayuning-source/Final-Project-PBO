@@ -17,8 +17,16 @@ public class TaskManager {
 
     /** Validasi (judul kosong, deadline null) lalu tambahkan. */
     public void addTask(Task task) throws InvalidTaskException {
-        // TODO (A1): validasi, set id, tambahkan ke list
-        throw new UnsupportedOperationException("belum diimplementasi");
+        if (task.getTitle() == null || task.getTitle().isBlank()) {
+            throw new InvalidTaskException("Judul tidak boleh kosong");
+        }
+        if (task.getDeadline() == null) {
+            throw new InvalidTaskException("Deadline tidak boleh null");
+        }
+        if (task.getId() < Task.MIN_ID || task.getId() > Task.MAX_ID) {
+            throw new InvalidTaskException("ID tugas tidak valid!");
+        }
+        tasks.add(task);
     }
 
     public void updateTask(Task task) throws InvalidTaskException {
