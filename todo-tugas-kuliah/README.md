@@ -5,9 +5,9 @@ Final Project Java (GUI Swing) - Kelompok ___
 ## Anggota & peran
 | Anggota | Peran | Folder utama |
 |---|---|---|
-| Anggota 1 | Logika inti | `model/`, `exception/`, `service/TaskManager`, `service/ReminderService` |
-| Anggota 2 | GUI | `ui/` |
-| Anggota 3 | Penyimpanan, integrasi, dokumentasi | `storage/`, `Main`, `service/TaskStatistics` |
+| Phoebe | Logika backend | `model/`, `exception/`, `service/TaskManager`, `service/ReminderService` |
+| Respananda | GUI | `ui/` |
+| Lucyana | Penyimpanan, integrasi, dokumentasi | `storage/`, `Main`, `service/TaskStatistics` |
 
 ## Struktur
 ```
