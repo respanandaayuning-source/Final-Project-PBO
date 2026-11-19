@@ -1,4 +1,4 @@
-# Aplikasi Manajemen Tugas Kuliah dengan Pengingat Deadline
+# Final Project PBO: Aplikasi Manajemen Tugas Kuliah dengan Pengingat Deadline
 
 Final Project Java (GUI Swing) - Kelompok ___
 
