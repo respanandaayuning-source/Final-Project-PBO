@@ -19,21 +19,21 @@ public class Task {
     private boolean done;
     private String notes;
 
-    //buat constructor yg masukin dr UI
+    // buat constructor yg masukin dr UI
     public Task(String title, String course, LocalDateTime deadline, Priority priority, String notes) {
         this(
-            generateId(),
-            title,
-            course,
-            deadline,
-            priority,
-            notes,
-            false
-        );
+                generateId(),
+                title,
+                course,
+                deadline,
+                priority,
+                notes,
+                false);
     }
 
-    //buat constructor yg masukin dr file data/tasks.csv
-    public Task(int id, String title, String course, LocalDateTime deadline, Priority priority, String notes, boolean done) {   
+    // buat constructor yg masukin dr file data/tasks.csv
+    public Task(int id, String title, String course, LocalDateTime deadline, Priority priority, String notes,
+            boolean done) {
         if (id < MIN_ID || id > MAX_ID) {
             throw new InvalidTaskException("ID tugas harus berada di antara " + MIN_ID + " dan " + MAX_ID + ".");
         }
@@ -50,38 +50,64 @@ public class Task {
         return Integer.parseInt(UUID.randomUUID().toString().substring(0, 7), 16);
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         if (title == null || title.isBlank()) {
             throw new InvalidTaskException("Judul tidak boleh kosong");
         }
-        this.title = title; 
+        this.title = title;
     }
 
-    public String getCourse() { return course; }
-    public void setCourse(String course) { 
-        this.course = (course != null) ? course.trim() : ""; 
+    public String getCourse() {
+        return course;
     }
 
-    public LocalDateTime getDeadline() { return deadline; }
-    public void setDeadline(LocalDateTime deadline) { 
+    public void setCourse(String course) {
+        this.course = (course != null) ? course.trim() : "";
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
         if (deadline == null || deadline.isBefore(LocalDateTime.now())) {
             throw new InvalidTaskException("Deadline tidak boleh kosong atau sudah lewat");
         }
-        this.deadline = deadline; 
+        this.deadline = deadline;
     }
 
-    public Priority getPriority() { return priority; }
-    public void setPriority(Priority priority) { this.priority = (priority != null) ? priority : Priority.MEDIUM; }
+    public Priority getPriority() {
+        return priority;
+    }
 
-    public boolean isDone() { return done; }
-    public void setDone(boolean done) { this.done = done; }
+    public void setPriority(Priority priority) {
+        this.priority = (priority != null) ? priority : Priority.MEDIUM;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
     public boolean isOverdue() {
         return !done && deadline != null && LocalDateTime.now().isAfter(deadline);
     }
+
     public boolean isDueWithinHours(long hours) {
         if (done || deadline == null) {
             return false;
@@ -90,6 +116,11 @@ public class Task {
         return !now.isAfter(deadline) && now.plusHours(hours).isAfter(deadline);
     }
 
-    public String getNotes() { return notes; }
-    public void setNotes(String notes) { this.notes = notes; }
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }
