@@ -1,5 +1,7 @@
 package todo.model;
 
+import todo.exception.InvalidTaskException;
+
 /** Prioritas tugas. (Anggota 1) */
 public enum Priority {
     HIGHT("Tinggi", 3), MEDIUM("Sedang", 2), LOW("Rendah", 1);
@@ -19,17 +21,26 @@ public enum Priority {
     public int getLevel() {
         return level;
     }
-
-    public static Priority fromLabel(String label) {
-        if (label == null || label.isBlank()) {
-            throw new IllegalArgumentException("Priority label cannot be null or blank");
-        }
+    
+    public static Priority fromLevel(int level) {
         for (Priority p : Priority.values()) {
-            if (p.getLabel().equalsIgnoreCase(label)) {
+            if (p.getLevel() == level) {
                 return p;
             }
         }
-        throw new IllegalArgumentException("Invalid priority label: " + label);
+        throw new InvalidTaskException("Level prioritas tidak valid: " + level);
+    }
+
+    public static Priority fromLabel(String label) {
+        if (label == null || label.isBlank()) {
+            throw new InvalidTaskException("Label prioritas tidak boleh kosong");
+        }
+        for (Priority p : Priority.values()) {
+            if (p.getLabel().equalsIgnoreCase(label.trim()) || p.name().equalsIgnoreCase(label.trim())) {
+                return p;
+            }
+        }
+        throw new InvalidTaskException("Label prioritas tidak valid: " + label);
     }
 
     @Override
