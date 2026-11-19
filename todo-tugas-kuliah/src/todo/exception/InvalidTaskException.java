@@ -1,7 +1,7 @@
 package todo.exception;
 
 /** Custom exception untuk data tugas tidak valid. (Anggota 1) */
-public class InvalidTaskException extends Exception {
+public class InvalidTaskException extends RuntimeException {
     public InvalidTaskException(String message) {
         super(message);
     }
