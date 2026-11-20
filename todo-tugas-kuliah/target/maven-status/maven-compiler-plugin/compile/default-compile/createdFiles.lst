@@ -1,0 +1,13 @@
+todo\model\Task.class
+todo\ui\TaskDialog.class
+todo\service\ReminderService.class
+todo\exception\InvalidTaskException.class
+todo\ui\MainFrame.class
+todo\ui\TaskRowRenderer.class
+todo\storage\FileTaskStorage.class
+todo\model\Priority.class
+todo\ui\TaskTableModel.class
+todo\Main.class
+todo\service\TaskManager.class
+todo\storage\TaskStorage.class
+todo\service\TaskStatistics.class

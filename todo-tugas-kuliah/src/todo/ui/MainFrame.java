@@ -1,27 +1,56 @@
+
 package todo.ui;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import todo.service.ReminderService;
 import todo.service.TaskManager;
 
-/** Jendela utama. (Anggota 2) */
-public class MainFrame extends JFrame {
+/** Jendela utama aplikasi JavaFX. (Anggota 2) */
+public class MainFrame {
+
     private final TaskManager manager;
     private final ReminderService reminder;
 
     public MainFrame(TaskManager manager, ReminderService reminder) {
-        super("Manajemen Tugas Kuliah");
         this.manager = manager;
         this.reminder = reminder;
+    }
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(900, 550);
-        setLocationRelativeTo(null);
+    public void show(Stage stage) {
 
-        // TODO (A2): JTable + tombol + filter + pencarian + label statistik + Timer pengingat
-        add(new JLabel("Kerangka GUI - TODO (Anggota 2)", SwingConstants.CENTER));
+        // Judul aplikasi
+        Label title = new Label("Manajemen Tugas Kuliah");
+        title.setStyle(
+            "-fx-font-size: 24px;" +
+            "-fx-font-weight: bold;"
+        );
+
+        // Informasi awal
+        Label description = new Label(
+            "Selamat datang di aplikasi Manajemen Tugas Kuliah!"
+        );
+
+        VBox content = new VBox(15);
+        content.setAlignment(Pos.CENTER);
+        content.getChildren().addAll(title, description);
+
+        // Layout utama
+        BorderPane root = new BorderPane();
+        root.setCenter(content);
+
+        // Menampilkan jendela
+        Scene scene = new Scene(root, 900, 550);
+
+        stage.setTitle("Manajemen Tugas Kuliah");
+        stage.setScene(scene);
+        stage.setMinWidth(700);
+        stage.setMinHeight(450);
+        stage.show();
     }
 }
