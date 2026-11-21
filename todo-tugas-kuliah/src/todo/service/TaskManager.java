@@ -98,7 +98,7 @@ public class TaskManager {
         return new ArrayList<>(tasks);
     }
 
-    //Dipakai Main saat memuat data dari file
+    // Dipakai Main saat memuat data dari file
     public void setAll(List<Task> loaded) {
         tasks.clear();
         tasks.addAll(loaded);
