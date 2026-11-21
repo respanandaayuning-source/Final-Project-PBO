@@ -1,8 +1,9 @@
 package todo.service;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.List;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -131,6 +132,16 @@ public class TaskManager {
             }
         }
         return result;
+    }
+
+    public List<String> getAllCourses() {
+        Set<String> Allcourses = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        for (Task t : tasks) {
+            if (t.getCourse() != null && !t.getCourse().isBlank()) {
+                Allcourses.add(t.getCourse());
+            }
+        }
+        return new ArrayList<>(Allcourses);
     }
 
     public List<Task> filterByPriority(Priority priority) {
