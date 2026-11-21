@@ -1,0 +1,24 @@
+.sidebar{-fx-background-color: #76944C;
+         -fx-padding: 28 20;
+         -fx-spacing: 28;}
+
+.logo-text{ -fx-text-fill: #FFFFFF;
+            -fx-font-size: 22px;
+            -fx-font-weight: bold;}
+
+.menu-item{ -fx-background-color: trasparent;
+            -fx-text-fill: #FBF5DB;
+            -fx-font-size: 15px;
+            -fx-alignment: center-left;
+            -fx-padding: 16 16;
+            -fx-background-radius: 12px;
+            -fx-cursor: hand;}
+
+.menu-item:hover{ -fx-background-color: rgba(255, 255, 255, 0.15);}
+
+.menu-item:selected{ -fx-background-color: #FBF5DB;
+                     -fx-text-fill: #3F5226;
+                     -fx-font-weight: bold;}
+
+.course-name { -fx-text-fill: #EEF3D8;
+              -fx-font-size: 13px;}
