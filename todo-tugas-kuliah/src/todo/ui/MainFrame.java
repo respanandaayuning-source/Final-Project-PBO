@@ -42,8 +42,8 @@ public class MainFrame {
 
         // Layout utama
         BorderPane root = new BorderPane();
-        root.setCenter(sidebar);
-        root.setLeft(center);
+        root.setCenter(center);
+        root.setLeft(sidebar);
         root.setRight(rightPanel);
 
 
@@ -52,8 +52,8 @@ public class MainFrame {
 
         stage.setTitle("Manajemen Tugas Kuliah");
         stage.setScene(scene);
-        stage.setMinWidth(1280);
-        stage.setMinHeight(700);
+        stage.setMinWidth(1100);
+        stage.setMinHeight(500);
         stage.show();
     }
 }
