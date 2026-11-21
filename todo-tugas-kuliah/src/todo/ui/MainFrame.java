@@ -24,33 +24,36 @@ public class MainFrame {
 
     public void show(Stage stage) {
 
-        // Judul aplikasi
-        Label title = new Label("Manajemen Tugas Kuliah");
-        title.setStyle(
-            "-fx-font-size: 24px;" +
-            "-fx-font-weight: bold;"
-        );
+        // Sidebar
+        VBox sidebar = new VBox();
+        sidebar.setPrefWidth(224);
+        sidebar.setMinWidth(224);
+        sidebar.setStyle("-fx-background-color: #76944c;");
+        
+        //mainframe
+        VBox center = new VBox();
+        center.setStyle("-fx-background-color: #F8F6EE;");
 
-        // Informasi awal
-        Label description = new Label(
-            "Selamat datang di aplikasi Manajemen Tugas Kuliah!"
-        );
-
-        VBox content = new VBox(15);
-        content.setAlignment(Pos.CENTER);
-        content.getChildren().addAll(title, description);
+        //agenda
+        VBox rightPanel = new VBox();
+        rightPanel.setPrefWidth(368);
+        rightPanel.setMinWidth(368);
+        rightPanel.setStyle("-fx-background-color: #FFFFFF;");
 
         // Layout utama
         BorderPane root = new BorderPane();
-        root.setCenter(content);
+        root.setCenter(sidebar);
+        root.setLeft(center);
+        root.setRight(rightPanel);
+
 
         // Menampilkan jendela
-        Scene scene = new Scene(root, 900, 550);
+        Scene scene = new Scene(root, 1280, 800);
 
         stage.setTitle("Manajemen Tugas Kuliah");
         stage.setScene(scene);
-        stage.setMinWidth(700);
-        stage.setMinHeight(450);
+        stage.setMinWidth(1280);
+        stage.setMinHeight(700);
         stage.show();
     }
 }
