@@ -1,66 +1,215 @@
-.sidebar{-fx-background-color: #76944C;
-         -fx-padding: 28 20;
-         -fx-spacing: 28;}
+/* KUNCI JAWABAN: seluruh isi file ini adalah jawaban untuk TODO CSS-1 sampai CSS-11 di kerangka. */
+/* ===================================================================
+   studyplan - style.css
+   Palet: Olive #76944C | Sage #C8DAA6 | Cream #FBF5DB | Yellow #FFD21F | Taupe #C0B6AC
+   =================================================================== */
+.root {
+  -olive: #76944C;
+  -olive-dark: #5B7A33;
+  -ink: #2F3E1D;
+  -ink-soft: #3F5226;
+  -muted: #8A8076;
+  -bg: #F8F6EE;
+  -line: #E6E2D3;
+  -red: #C4473A;
+  -fx-font-family: "Inter", "Segoe UI", "SF Pro Text", sans-serif;
+  -fx-font-size: 13px;
+  -fx-text-fill: -ink;
+}
+.label { -fx-text-fill: -ink; }
+.app-root { -fx-background-color: -bg; }
 
-.logo-text{ -fx-text-fill: #FFFFFF;
-            -fx-font-size: 22px;
-            -fx-font-weight: bold;}
+/* ---------- Ikon (garis, warna lewat stroke) ---------- */
+.icon { -fx-fill: transparent; -fx-stroke: -ink-soft; -fx-stroke-width: 2; -fx-stroke-line-cap: round; -fx-stroke-line-join: round; }
+.icon-muted { -fx-stroke: -muted; }
+.icon-dark { -fx-stroke: -ink-soft; }
+.icon-olive { -fx-stroke: -olive; }
+.icon-white { -fx-stroke: white; }
+.icon-menu { -fx-stroke: #FBF5DB; }
 
-.menu-item{ -fx-background-color: trasparent;
-            -fx-text-fill: #FBF5DB;
-            -fx-font-size: 15px;
-            -fx-alignment: center-left;
-            -fx-padding: 16 16;
-            -fx-background-radius: 12px;
-            -fx-cursor: hand;}
+/* ---------- Sidebar ---------- */
+.sidebar { -fx-background-color: -olive; -fx-padding: 36 20 24 20; -fx-spacing: 34; }
+.logo-box { -fx-background-color: #FBF5DB; -fx-background-radius: 10; -fx-min-width: 36; -fx-min-height: 36; -fx-pref-width: 36; -fx-pref-height: 36; -fx-max-width: 36; -fx-max-height: 36; }
+.logo-text { -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold; }
+.sidebar-caption { -fx-text-fill: #E1EBCB; -fx-font-size: 10px; -fx-font-weight: bold; }
+.course-name { -fx-text-fill: #F1F5E2; -fx-font-size: 13px; }
 
-.menu-item:hover{ -fx-background-color: rgba(255, 255, 255, 0.15);}
+.menu-item { -fx-background-color: transparent; -fx-text-fill: #FBF5DB; -fx-font-size: 15px;
+  -fx-alignment: CENTER_LEFT; -fx-padding: 13 16; -fx-background-radius: 14; -fx-cursor: hand; }
+.menu-item:hover { -fx-background-color: rgba(255,255,255,0.14); }
+.menu-item:selected, .menu-item:selected:hover { -fx-background-color: #FBF5DB; -fx-text-fill: -ink; -fx-font-weight: bold; }
+.menu-item:selected .icon-menu { -fx-stroke: -ink; }
 
-.menu-item:selected{ -fx-background-color: #FBF5DB;
-                     -fx-text-fill: #3F5226;
-                     -fx-font-weight: bold;}
+/* ---------- Area halaman ---------- */
+.page-scroll, .page-scroll > .viewport { -fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; }
+.center-area { -fx-padding: 28 32 32 32; -fx-background-color: transparent; }
+.page-title { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.page-sub { -fx-text-fill: -muted; -fx-font-size: 13px; }
+.welcome-caption { -fx-text-fill: -olive; -fx-font-size: 10px; -fx-font-weight: bold; }
+.headline { -fx-text-fill: -ink; -fx-font-size: 32px; -fx-font-weight: bold; }
+.date-label { -fx-text-fill: -ink-soft; -fx-font-size: 13px; }
+.empty-text { -fx-text-fill: -muted; -fx-font-size: 13px; }
 
-.course-name { -fx-text-fill: #EEF3D8;
-              -fx-font-size: 13px;}
+.search-box { -fx-background-color: white; -fx-background-radius: 12; -fx-border-color: -line; -fx-border-radius: 12; -fx-padding: 10 14; }
+.plain-field, .plain-field:focused { -fx-background-color: transparent; -fx-background-insets: 0; -fx-background-radius: 0;
+  -fx-padding: 0; -fx-faint-focus-color: transparent; -fx-focus-color: transparent; -fx-highlight-fill: #C8DAA6; -fx-highlight-text-fill: -ink; }
 
-.center-area { -fx-background-color: #F8F6EE; 
-                -fx-padding: 32; }
-                
-.welcome-caption { -fx-text-fill: #76944C;
-                   -fx-font-size: 10px;
-                   -fx-font-weight: bold; }
-
-.headline { -fx-text-fill: #2F3E1D; 
-            -fx-font-size: 30px; 
-            -fx-font-weight: bold; }
-
-.page-sub { -fx-text-fill: #8A8076;
-            -fx-font-size: 13px; }
-
-.btn-primary { -fx-background-color: #76944C; 
-               -fx-text-fill: white; 
-               -fx-font-weight: bold;
-               -fx-background-radius: 10;
-               -fx-padding: 12 20; -fx-cursor: hand; }
-
+/* ---------- Tombol ---------- */
+.btn-primary { -fx-background-color: -olive; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;
+  -fx-background-radius: 11; -fx-padding: 13 22; -fx-cursor: hand; -fx-graphic-text-gap: 10; }
 .btn-primary:hover { -fx-background-color: #66823F; }
+.btn-primary:pressed { -fx-background-color: #587536; }
+.btn-ghost { -fx-background-color: transparent; -fx-text-fill: -ink-soft; -fx-background-radius: 11; -fx-padding: 13 22; -fx-cursor: hand; }
+.btn-ghost:hover { -fx-background-color: #ECE8DA; }
 
-.stat-card { -fx-background-color: white; 
-             -fx-border-color: #E6E2D3; 
-             -fx-border-radius: 14;
-             -fx-background-radius: 14; 
-             -fx-padding: 18 20; 
-             -fx-alignment: CENTER_LEFT; }
+.pill-btn { -fx-background-color: white; -fx-border-color: -line; -fx-border-radius: 10; -fx-background-radius: 10;
+  -fx-padding: 9 14; -fx-font-size: 12px; -fx-text-fill: -ink; -fx-cursor: hand; -fx-graphic-text-gap: 8; }
+.pill-btn:hover { -fx-background-color: #F3F1E6; }
 
-.stat-card-done { -fx-background-color: #E3EBD0; 
-                  -fx-border-color: transparent; }
+.icon-btn { -fx-background-color: transparent; -fx-background-radius: 8; -fx-padding: 4 6; -fx-cursor: hand; -fx-min-width: 34; }
+.icon-btn:hover { -fx-background-color: #ECE8DA; }
+.circle-btn { -fx-background-color: #ECE8DA; -fx-background-radius: 20; -fx-padding: 0; -fx-cursor: hand;
+  -fx-min-width: 36; -fx-pref-width: 36; -fx-max-width: 36; -fx-min-height: 36; -fx-pref-height: 36; -fx-max-height: 36; }
+.circle-btn:hover { -fx-background-color: #E0DCC9; }
+.ghost-btn { -fx-background-color: transparent; -fx-text-fill: -muted; -fx-font-size: 12px; -fx-padding: 8 6; -fx-cursor: hand; -fx-graphic-text-gap: 10; }
+.ghost-btn:hover { -fx-text-fill: -ink; }
+.arrow-btn { -fx-background-color: transparent; -fx-border-color: -olive; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 0; -fx-cursor: hand;
+  -fx-min-width: 28; -fx-pref-width: 28; -fx-max-width: 28; -fx-min-height: 28; -fx-pref-height: 28; -fx-max-height: 28; }
+.arrow-btn:hover { -fx-background-color: rgba(118,148,76,0.15); }
+.arrow-btn .icon { -fx-stroke: -olive-dark; }
 
-.stat-card-soon { -fx-background-color: #FBF3D3; 
-                  -fx-border-color: transparent; }
+/* ---------- Tab ---------- */
+.tab-btn { -fx-background-color: transparent; -fx-background-radius: 10; -fx-text-fill: -ink-soft; -fx-font-size: 12px; -fx-padding: 9 16; -fx-cursor: hand; }
+.tab-btn:hover { -fx-background-color: #F3F1E6; }
+.tab-btn:selected, .tab-btn:selected:hover { -fx-background-color: #E3EBD0; -fx-font-weight: bold; }
 
-.stat-number { -fx-text-fill: #3F5226; 
-               -fx-font-size: 28px; 
-               -fx-font-weight: bold; }
+.view-tab { -fx-background-color: transparent; -fx-background-radius: 0; -fx-text-fill: -muted; -fx-font-size: 13px;
+  -fx-padding: 10 8; -fx-cursor: hand; -fx-graphic-text-gap: 8;
+  -fx-border-color: transparent; -fx-border-width: 0 0 2 0; }
+.view-tab:selected { -fx-text-fill: -olive-dark; -fx-font-weight: bold; -fx-border-color: transparent transparent -olive transparent; }
+.view-tab:selected .icon { -fx-stroke: -olive-dark; }
 
-.stat-label  { -fx-text-fill: #3F5226; 
-               -fx-font-size: 12px; }
+/* ---------- Kartu ---------- */
+.card { -fx-background-color: white; -fx-background-radius: 22; -fx-border-color: -line; -fx-border-radius: 22; -fx-padding: 24; }
+.card-title { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.card-sub { -fx-font-size: 12px; -fx-text-fill: -muted; }
+
+.stat-card { -fx-background-color: white; -fx-background-radius: 16; -fx-border-color: -line; -fx-border-radius: 16; -fx-padding: 20 18; -fx-min-width: 120; }
+.stat-card-done { -fx-background-color: #DDE8C8; -fx-border-color: transparent; }
+.stat-card-soon { -fx-background-color: #FBF3D3; -fx-border-color: transparent; }
+.stat-card-late { -fx-background-color: #F6DDD7; -fx-border-color: transparent; }
+.stat-card-late .stat-number { -fx-text-fill: -red; }
+.stat-number { -fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: -ink-soft; }
+.stat-label { -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.big-percent { -fx-font-size: 52px; -fx-font-weight: bold; -fx-text-fill: -olive-dark; }
+
+/* ---------- Baris tugas ---------- */
+.task-row { -fx-padding: 16 4 16 4; -fx-border-color: transparent transparent #ECE8DA transparent; -fx-border-width: 0 0 1 0; }
+.row-title { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.row-meta { -fx-font-size: 11px; -fx-text-fill: -muted; }
+.late-text { -fx-text-fill: -red; }
+.done-text { -fx-text-fill: -muted; }
+.done-text .text { -fx-strikethrough: true; }
+
+.round-check { -fx-cursor: hand; }
+.round-check .box { -fx-background-color: white; -fx-background-radius: 7; -fx-border-color: #C0B6AC; -fx-border-radius: 7; -fx-border-width: 1.5; -fx-padding: 4; }
+.round-check:hover .box { -fx-border-color: -olive; }
+.round-check:selected .box { -fx-background-color: -olive; -fx-border-color: -olive; }
+.round-check .mark { -fx-background-color: white; }
+
+.badge { -fx-background-radius: 7; -fx-padding: 4 11; -fx-font-size: 11px; -fx-font-weight: bold; }
+.prio-high { -fx-background-color: #FBF0C5; -fx-text-fill: #7A6400; }
+.prio-med  { -fx-background-color: #DDE8C8; -fx-text-fill: -ink-soft; }
+.prio-low  { -fx-background-color: #ECE8E0; -fx-text-fill: -muted; }
+.badge-done { -fx-background-color: #C8DAA6; -fx-text-fill: -ink-soft; }
+.badge-late { -fx-background-color: #D9C9B4; -fx-text-fill: #6B4F3A; }
+
+/* ---------- Panel kanan ---------- */
+.right-panel { -fx-background-color: white; -fx-padding: 30 24 24 24; -fx-border-color: transparent transparent transparent -line; -fx-border-width: 0 0 0 1; }
+.panel-title { -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.panel-title-small { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.month-title { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.divider { -fx-background-color: -line; -fx-min-height: 1; -fx-pref-height: 1; -fx-max-height: 1; -fx-max-width: infinity; }
+.count-badge { -fx-background-color: #E3EBD0; -fx-background-radius: 8; -fx-padding: 2 9; -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -ink-soft; }
+
+.rem-card { -fx-background-radius: 6 14 14 6; -fx-padding: 12 14 12 16; -fx-border-width: 0 0 0 4; -fx-border-radius: 6 14 14 6; -fx-cursor: hand; }
+.rem-ok   { -fx-background-color: #F3F1E6; -fx-border-color: transparent transparent transparent #A9C77B; }
+.rem-soon { -fx-background-color: #FBF3D3; -fx-border-color: transparent transparent transparent #FFD21F; }
+.rem-late { -fx-background-color: #F6DDD7; -fx-border-color: transparent transparent transparent -red; }
+.rem-title { -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.rem-meta { -fx-font-size: 10px; -fx-text-fill: -muted; }
+
+/* ---------- Kalender ---------- */
+.cal-head { -fx-font-size: 11px; -fx-text-fill: -muted; -fx-padding: 0 0 6 0; }
+.cal-cell { -fx-cursor: hand; -fx-background-radius: 10; }
+.cal-cell:hover { -fx-background-color: #F3F1E6; }
+.cal-num { -fx-font-size: 12px; -fx-text-fill: -ink; -fx-background-radius: 16; }
+.cal-other { -fx-text-fill: #C9C3B2; }
+.cal-today { -fx-background-color: -olive; -fx-text-fill: white; -fx-font-weight: bold; }
+.cal-selected { -fx-border-color: -olive; -fx-border-radius: 16; }
+.cal-dot { -fx-fill: -olive; }
+
+.cal-big { -fx-background-color: white; -fx-background-radius: 10; -fx-border-color: -line; -fx-border-radius: 10; -fx-padding: 8; -fx-cursor: hand; }
+.cal-big:hover { -fx-background-color: #FBFAF3; }
+.cal-big-other { -fx-background-color: #F8F6EE; }
+.cal-big-selected { -fx-border-color: -olive; -fx-border-width: 2; }
+.cal-big-num { -fx-font-size: 12px; -fx-text-fill: -ink; -fx-background-radius: 13; }
+.cal-big-other .cal-big-num { -fx-text-fill: #C9C3B2; }
+.cal-chip { -fx-background-color: #E3EBD0; -fx-background-radius: 5; -fx-padding: 2 6; -fx-font-size: 10px; -fx-text-fill: -ink-soft; }
+.cal-chip-late { -fx-background-color: #F6DDD7; -fx-text-fill: #A3281B; }
+.cal-chip-done { -fx-background-color: #ECE8E0; -fx-text-fill: -muted; }
+.cal-more { -fx-font-size: 10px; -fx-text-fill: -muted; }
+
+/* ---------- Semua tugas: info, chip, papan ---------- */
+.info-key { -fx-text-fill: -muted; -fx-font-size: 12px; }
+.info-val { -fx-text-fill: -ink; -fx-font-size: 13px; }
+.chip { -fx-background-radius: 8; -fx-padding: 6 12; -fx-font-size: 11px; -fx-text-fill: -ink-soft; }
+.chip-c0 { -fx-background-color: #FBF3D3; }
+.chip-c1 { -fx-background-color: #DDE8C8; }
+.chip-c2 { -fx-background-color: #ECE8E0; }
+.chip-c3 { -fx-background-color: #EADFD2; }
+
+.col-title { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.kcard { -fx-background-radius: 18; -fx-padding: 14 16 14 16; -fx-min-height: 150; -fx-cursor: hand; }
+.kcard-c0 { -fx-background-color: #FBF3D3; }
+.kcard-c1 { -fx-background-color: #DDE8C8; }
+.kcard-c2 { -fx-background-color: #ECE8E0; }
+.kcard-c3 { -fx-background-color: #EADFD2; }
+.kcard-done { -fx-background-color: #EEF1E4; }
+.kcard-late { -fx-background-color: #E9DFD3; }
+.kcard-title { -fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.kcard-title-done { -fx-font-size: 14px; -fx-text-fill: -ink-soft; }
+.kcard-meta { -fx-font-size: 11px; -fx-text-fill: -muted; }
+.kcard .prio-high { -fx-background-color: #FFD21F; -fx-text-fill: #3F3000; }
+.kcard .prio-med, .kcard .prio-low { -fx-background-color: white; -fx-text-fill: -ink-soft; }
+
+/* ---------- Form tambah/ubah ---------- */
+.task-dialog { -fx-background-color: #FBF5DB; -fx-padding: 8; }
+.task-dialog .button-bar { -fx-background-color: transparent; }
+.dialog-title { -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: -ink; }
+.field-label { -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: -ink-soft; }
+.field-hint { -fx-font-size: 11px; -fx-text-fill: -muted; }
+.task-dialog .text-field, .task-dialog .text-area, .task-dialog .combo-box-base, .task-dialog .date-picker {
+  -fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #D6CEC2; -fx-border-radius: 10; }
+.task-dialog .text-field { -fx-padding: 10 12; }
+.task-dialog .text-area .content { -fx-background-color: white; -fx-background-radius: 10; }
+.task-dialog .combo-box-base > .text-field, .task-dialog .date-picker > .text-field { -fx-background-color: transparent; -fx-border-color: transparent; }
+.task-dialog .text-field:focused, .task-dialog .text-area:focused { -fx-border-color: -olive; -fx-border-width: 1.5; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; }
+.seg-btn { -fx-background-color: white; -fx-border-color: #D6CEC2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 9 22; -fx-text-fill: -ink-soft; -fx-cursor: hand; }
+.seg-btn:selected { -fx-background-color: -olive; -fx-border-color: -olive; -fx-text-fill: white; -fx-font-weight: bold; }
+
+/* ---------- Progress bar ---------- */
+.progress-bar > .track { -fx-background-color: #E6E2D3; -fx-background-radius: 8; -fx-background-insets: 0; }
+.progress-bar > .bar { -fx-background-color: -olive; -fx-background-radius: 8; -fx-background-insets: 0; -fx-padding: 5; }
+
+/* ---------- Scrollbar tipis ---------- */
+.scroll-bar:vertical, .scroll-bar:horizontal { -fx-background-color: transparent; }
+.scroll-bar:vertical { -fx-pref-width: 10; }
+.scroll-bar > .thumb { -fx-background-color: #D6CEC2; -fx-background-radius: 6; }
+.scroll-bar > .increment-button, .scroll-bar > .decrement-button { -fx-padding: 0; -fx-pref-height: 0; -fx-pref-width: 0; -fx-opacity: 0; }
+
+/* ---------- Sidebar buka/tutup ---------- */
+.toggle-sidebar-btn { -fx-background-color: transparent; -fx-background-radius: 10; -fx-padding: 8; -fx-cursor: hand; }
+.toggle-sidebar-btn:hover { -fx-background-color: rgba(255,255,255,0.14); }
+.sidebar-collapsed { -fx-padding: 36 12 24 12; }
+.sidebar-collapsed .menu-item { -fx-alignment: CENTER; -fx-padding: 13 0; }
