@@ -88,7 +88,6 @@ public class MainFrame {
     private VBox sidebar;                                // disimpan di field supaya toggleSidebar() bisa mengubahnya
     private boolean collapsed = false;
     private HBox brandRow;                               // baris logo (rata kiri saat terbuka, tengah saat ciut)
-    private HBox toggleRow;                              // baris tombol hamburger
     private final List<Node> sidebarTexts = new ArrayList<>();   // semua teks yang disembunyikan saat ciut
 
     private final DashboardPage dashboard;
@@ -163,59 +162,80 @@ public class MainFrame {
     // =====================================================================
     // 2. Sidebar (logo, 4 menu, daftar mata kuliah)
     // =====================================================================
-    private VBox buildSidebar() {
-        // Tombol hamburger di baris paling atas: klik = buka/tutup sidebar
-        Button toggleBtn = new Button();
-        toggleBtn.setGraphic(Ui.icon(Ui.MENU, 20, "icon-menu"));
-        toggleBtn.getStyleClass().add("toggle-sidebar-btn");
-        toggleBtn.setOnAction(e -> toggleSidebar());
-        toggleRow = new HBox(toggleBtn);
-        toggleRow.setAlignment(Pos.CENTER_RIGHT);
 
-        // Logo + nama aplikasi
-        StackPane logoBox = new StackPane(Ui.icon(Ui.BOOK, 22, "icon-olive"));
-        logoBox.getStyleClass().add("logo-box");
-        Label logoText = Ui.label("studyplan", "logo-text");
-        brandRow = new HBox(10, logoBox, logoText);
-        brandRow.setAlignment(Pos.CENTER_LEFT);
-        Label caption = Ui.label("RUANG BELAJARMU", "sidebar-caption");
-        VBox brand = new VBox(8, brandRow, caption);
+private VBox buildSidebar() {
 
-        // Empat tombol menu. ToggleGroup memastikan hanya satu yang aktif.
-        String[] names = {"Dashboard", "Semua tugas", "Kalender", "Statistik"};
-        String[] icons = {Ui.GRID, Ui.LIST, Ui.CALENDAR, Ui.CHART};
-        ToggleGroup group = new ToggleGroup();
-        VBox menu = new VBox(8);
-        for (int i = 0; i < names.length; i++) {
-            final int page = i;   // "final" karena dipakai di dalam lambda di bawah
-            ToggleButton b = new ToggleButton(names[i], Ui.icon(icons[i], 22, "icon-menu"));
-            b.setToggleGroup(group);
-            b.getStyleClass().add("menu-item");
-            b.setGraphicTextGap(16);
-            b.setMaxWidth(Double.MAX_VALUE);
-            // Menu yang sedang aktif tidak boleh "terlepas" kalau diklik lagi
-            b.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { if (b.isSelected()) e.consume(); });
-            b.setOnAction(e -> navigate(page));
-            navButtons.add(b);
-            menu.getChildren().add(b);
-        }
+    // 1. Logo + nama aplikasi
+    StackPane logoBox = new StackPane(
+            Ui.icon(Ui.BOOK, 22, "icon-olive")
+    );
+    logoBox.getStyleClass().add("logo-box");
 
-        VBox courses = new VBox(14, Ui.label("MATA KULIAH", "sidebar-caption"), courseList);
+    Label logoText = Ui.label("studyplan", "logo-text");
 
-        // Teks-teks yang hilang saat sidebar ciut (menu tidak masuk daftar ini: ia hanya
-        // berganti ke mode "ikon saja" lewat setContentDisplay)
-        sidebarTexts.add(logoText);
-        sidebarTexts.add(caption);
-        sidebarTexts.add(courses);
+    brandRow = new HBox(10, logoBox, logoText);
+    brandRow.setAlignment(Pos.CENTER_LEFT);
 
-        sidebar = new VBox(toggleRow, brand, menu, courses);
-        sidebar.getStyleClass().add("sidebar");
-        sidebar.setPrefWidth(EXPANDED_WIDTH);
-        // min dan max "mengikuti" pref (binding), jadi cukup mengubah prefWidth saja nanti
-        sidebar.minWidthProperty().bind(sidebar.prefWidthProperty());
-        sidebar.maxWidthProperty().bind(sidebar.prefWidthProperty());
-        return sidebar;
+    // Hanya logo buku yang berfungsi sebagai tombol buka/tutup
+    logoBox.setOnMouseClicked(e -> toggleSidebar());
+    logoBox.setStyle("-fx-cursor: hand;");
+
+    Label caption = Ui.label("RUANG BELAJARMU", "sidebar-caption");
+    VBox brand = new VBox(8, brandRow, caption);
+
+    // 2. Empat tombol menu
+    String[] names = {"Dashboard", "Semua tugas", "Kalender", "Statistik"};
+    String[] icons = {Ui.GRID, Ui.LIST, Ui.CALENDAR, Ui.CHART};
+
+    ToggleGroup group = new ToggleGroup();
+    VBox menu = new VBox(8);
+
+    for (int i = 0; i < names.length; i++) {
+        final int page = i;
+
+        ToggleButton b = new ToggleButton(
+                names[i],
+                Ui.icon(icons[i], 22, "icon-menu")
+        );
+
+        b.setToggleGroup(group);
+        b.getStyleClass().add("menu-item");
+        b.setGraphicTextGap(16);
+        b.setMaxWidth(Double.MAX_VALUE);
+
+        b.addEventFilter(MouseEvent.MOUSE_PRESSED,
+                e -> {
+                    if (b.isSelected()) e.consume();
+                });
+
+        b.setOnAction(e -> navigate(page));
+
+        navButtons.add(b);
+        menu.getChildren().add(b);
     }
+
+    // 3. Daftar mata kuliah
+    VBox courses = new VBox(
+            14,
+            Ui.label("MATA KULIAH", "sidebar-caption"),
+            courseList
+    );
+
+    // 4. Teks yang disembunyikan ketika sidebar ciut
+    sidebarTexts.add(logoText);
+    sidebarTexts.add(caption);
+    sidebarTexts.add(courses);
+
+    // 5. Susunan sidebar
+    sidebar = new VBox(brand, menu, courses);
+    sidebar.getStyleClass().add("sidebar");
+
+    sidebar.setPrefWidth(EXPANDED_WIDTH);
+    sidebar.minWidthProperty().bind(sidebar.prefWidthProperty());
+    sidebar.maxWidthProperty().bind(sidebar.prefWidthProperty());
+
+    return sidebar;
+}
 
     // =====================================================================
     // 2B. Sidebar buka/tutup
@@ -238,32 +258,48 @@ public class MainFrame {
 
     /** Menyesuaikan isi sidebar dengan keadaan "collapsed": teks tampil/hilang dan posisi rata kiri/tengah. */
     private void applySidebarLook() {
-        for (Node n : sidebarTexts) {
-            n.setVisible(!collapsed);
-            n.setManaged(!collapsed);      // managed=false: ruangnya ikut hilang, bukan cuma transparan
-        }
-        for (ToggleButton b : navButtons) {
-            b.setContentDisplay(collapsed ? ContentDisplay.GRAPHIC_ONLY : ContentDisplay.LEFT);
-        }
-        brandRow.setAlignment(collapsed ? Pos.CENTER : Pos.CENTER_LEFT);
-        toggleRow.setAlignment(collapsed ? Pos.CENTER : Pos.CENTER_RIGHT);
-
-        // Class CSS tambahan untuk padding dan perataan saat ciut
-        sidebar.getStyleClass().remove("sidebar-collapsed");
-        if (collapsed) sidebar.getStyleClass().add("sidebar-collapsed");
+    for (Node n : sidebarTexts) {
+        n.setVisible(!collapsed);
+        n.setManaged(!collapsed);
     }
 
-    /** Mengisi daftar mata kuliah di sidebar dari data tugas (warna titik bergantian). */
+    for (ToggleButton b : navButtons) {
+        b.setContentDisplay(
+                collapsed
+                        ? ContentDisplay.GRAPHIC_ONLY
+                        : ContentDisplay.LEFT
+        );
+    }
+
+    brandRow.setAlignment(
+            collapsed ? Pos.CENTER : Pos.CENTER_LEFT
+    );
+
+    sidebar.getStyleClass().remove("sidebar-collapsed");
+
+    if (collapsed) {
+        sidebar.getStyleClass().add("sidebar-collapsed");
+    }
+}
+
+    /** Memperbarui daftar mata kuliah yang ditampilkan di sidebar. */
     private void refreshCourses() {
         courseList.getChildren().clear();
         List<String> courses = getCourses();
-        for (String c : courses) {
-            Circle dot = new Circle(4, Color.web(Ui.DOT_COLORS[Ui.colorIndex(c, courses)]));
-            HBox row = new HBox(12, dot, Ui.label(c, "course-name"));
-            row.setAlignment(Pos.CENTER_LEFT);
-            courseList.getChildren().add(row);
+
+        for (String course : courses) {
+            int colorIndex = Ui.colorIndex(course, courses);
+            Circle dot = new Circle(4);
+            dot.setFill(Color.web(Ui.DOT_COLORS[colorIndex]));
+
+            HBox courseRow = new HBox(
+                    10,
+                    dot,
+                    Ui.label(course, "course-name")
+            );
+            courseRow.setAlignment(Pos.CENTER_LEFT);
+            courseList.getChildren().add(courseRow);
         }
-        if (courses.isEmpty()) courseList.getChildren().add(Ui.label("Belum ada", "course-name"));
     }
 
     // =====================================================================
