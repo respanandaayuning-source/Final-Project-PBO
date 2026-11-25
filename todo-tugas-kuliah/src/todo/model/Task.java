@@ -19,31 +19,14 @@ public class Task {
     private boolean done;
     private String notes;
 
-    // buat constructor yg masukin dr UI
     public Task(String title, String course, LocalDateTime deadline, Priority priority, String notes) {
-        this(
-                generateId(),
-                title,
-                course,
-                deadline,
-                priority,
-                notes,
-                false);
-    }
-
-    // buat constructor yg masukin dr file data/tasks.csv
-    public Task(int id, String title, String course, LocalDateTime deadline, Priority priority, String notes,
-            boolean done) {
-        if (id < MIN_ID || id > MAX_ID) {
-            throw new InvalidTaskException("ID tugas harus berada di antara " + MIN_ID + " dan " + MAX_ID + ".");
-        }
-        this.id = id;
+        this.id = generateId();
         this.title = title;
-        this.course = (course != null) ? course.trim() : "";
+        this.course = course;
         this.deadline = deadline;
-        this.priority = (priority != null) ? priority : Priority.MEDIUM;
-        this.notes = (notes != null) ? notes.trim() : "";
-        this.done = done;
+        this.priority = priority;
+        this.notes = notes;
+        this.done = false;
     }
 
     public static int generateId() {
