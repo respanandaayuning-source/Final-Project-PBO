@@ -116,7 +116,7 @@ public class FileTaskStorage implements TaskStorage {
         boolean done = Boolean.parseBoolean(row.get(5).trim());
         String notes = row.get(6);
 
-        return new Task(id, title, course, deadline, priority, notes, done);
+        return new Task(title, course, deadline, priority, notes);
     }
 
     private List<List<String>> parseCsv(String text) {
