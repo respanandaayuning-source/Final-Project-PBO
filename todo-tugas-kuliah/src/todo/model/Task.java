@@ -2,6 +2,9 @@ package todo.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import todo.exception.InvalidTaskException;
@@ -18,6 +21,8 @@ public class Task {
     private Priority priority;
     private boolean done;
     private String notes;
+
+    private final List<SubTask> subTasks = new ArrayList<>();
 
     public Task(String title, String course, LocalDateTime deadline, Priority priority, String notes) {
         this.id = generateId();
@@ -85,6 +90,11 @@ public class Task {
 
     public void setDone(boolean done) {
         this.done = done;
+        if (done) {
+            for (SubTask st : subTasks) {
+                st.setDone(true);
+            }
+        }
     }
 
     public boolean isOverdue() {
@@ -105,5 +115,60 @@ public class Task {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void syncStatusFromSubTasks() {
+        if (subTasks.isEmpty()) {
+            return;
+        }
+        boolean allCompleted = true;
+        for (SubTask st : subTasks) {
+            if (!st.isDone()) {
+                allCompleted = false;
+                break;
+            }
+        }
+        this.done = allCompleted;
+    }
+
+     public List<SubTask> getSubTasks() {
+        return Collections.unmodifiableList(subTasks);
+    }
+
+    public void addSubTask(SubTask subTask) {
+        if (subTask == null || subTask.getTitle().isBlank()) {
+            throw new InvalidTaskException("Subtask tidak boleh kosong");
+        }
+        subTasks.add(subTask);
+    }
+
+    public void removeSubTask(int index) {
+        if (index < 0 || index >= subTasks.size()) {
+            throw new IndexOutOfBoundsException("Indeks subtask tidak valid");
+        }
+        subTasks.remove(index);
+        syncStatusFromSubTasks();
+    }   
+
+    public void toggleSubTaskDone(int index) {
+        if (index < 0 || index >= subTasks.size()) {
+            throw new IndexOutOfBoundsException("Indeks subtask tidak valid");
+        }
+        SubTask st = subTasks.get(index);
+        st.setDone(!st.isDone());
+        syncStatusFromSubTasks();
+    }
+
+    public double getCompletionPercentage() {
+        if (subTasks.isEmpty()) {
+            return done ? 100.0 : 0.0;
+        }
+        int completedCount = 0;
+        for (SubTask st : subTasks) {
+            if (st.isDone()) {
+                completedCount++;
+            }
+        }
+        return (completedCount * 100.0) / subTasks.size();
     }
 }
