@@ -109,6 +109,17 @@ public class Task {
         return !now.isAfter(deadline) && now.plusHours(hours).isAfter(deadline);
     }
 
+    public boolean isInProgress() {
+        if(!done){
+            for (SubTask st : subTasks) {
+                if (st.isDone()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public String getNotes() {
         return notes;
     }
