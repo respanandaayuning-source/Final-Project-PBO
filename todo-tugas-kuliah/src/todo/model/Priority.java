@@ -4,7 +4,7 @@ import todo.exception.InvalidTaskException;
 
 /** Prioritas tugas. (Anggota 1) */
 public enum Priority {
-    HIGHT("Tinggi", 3), MEDIUM("Sedang", 2), LOW("Rendah", 1);
+    HIGH("Tinggi", 3), MEDIUM("Sedang", 2), LOW("Rendah", 1);
 
     private final String label;
     private final int level;
