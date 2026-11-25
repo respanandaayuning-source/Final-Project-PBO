@@ -21,11 +21,11 @@ public class Task {
 
     public Task(String title, String course, LocalDateTime deadline, Priority priority, String notes) {
         this.id = generateId();
-        this.title = title;
-        this.course = course;
-        this.deadline = deadline;
-        this.priority = priority;
-        this.notes = notes;
+        setTitle(title);
+        setCourse(course);
+        setDeadline(deadline);
+        setPriority(priority);
+        setNotes(notes);
         this.done = false;
     }
 
