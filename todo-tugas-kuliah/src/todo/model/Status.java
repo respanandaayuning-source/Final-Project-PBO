@@ -3,7 +3,7 @@ package todo.model;
 import todo.exception.InvalidTaskException;
 
 public enum Status {
-    DONE("Selesai"), IN_PROGRESS("Sedang Dikerjakan"), NOT_DONE("Belum Selesai"), LATE("Terlambat");
+    DONE("Selesai"), IN_PROGRESS("Sedang Dikerjakan"), NOT_DONE("Belum Selesai"), OVERDUE("Terlambat");
 
     private final String label;
 
