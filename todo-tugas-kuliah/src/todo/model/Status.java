@@ -19,9 +19,9 @@ public enum Status {
         if (label == null || label.isBlank()) {
             throw new InvalidTaskException("Label status tidak boleh kosong");
         }
-        for (Status st : Status.values()) {
-            if (st.getLabel().equalsIgnoreCase(label.trim()) || st.name().equalsIgnoreCase(label.trim())) {
-                return st;
+        for (Status s : Status.values()) {
+            if (s.getLabel().equalsIgnoreCase(label.trim()) || s.name().equalsIgnoreCase(label.trim())) {
+                return s;
             }
         }
         throw new InvalidTaskException("Label status tidak valid: " + label);
