@@ -9,7 +9,6 @@ import java.util.UUID;
 
 import todo.exception.InvalidTaskException;
 
-/** Data satu tugas kuliah. (Anggota 1) */
 public class Task {
     public static final DateTimeFormatter DEADLINE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final int MIN_ID = 0;
@@ -76,6 +75,10 @@ public class Task {
         this.deadline = deadline;
     }
 
+    public String getFormattedDeadline() {
+        return deadline.format(DEADLINE_FORMATTER);
+    }
+
     public Priority getPriority() {
         return priority;
     }
@@ -84,10 +87,19 @@ public class Task {
         this.priority = (priority != null) ? priority : Priority.MEDIUM;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = (notes == null) ? "" : notes.trim();
+    }
+
     public boolean isDone() {
         return done;
     }
 
+    // berhubungan sm subtask
     public void setDone(boolean done) {
         this.done = done;
         if (done) {
@@ -97,37 +109,16 @@ public class Task {
         }
     }
 
-    public boolean isOverdue() {
-        return !done && deadline != null && LocalDateTime.now().isAfter(deadline);
-    }
-
-    public boolean isDueWithinHours(long hours) {
-        if (done || deadline == null) {
-            return false;
-        }
-        LocalDateTime now = LocalDateTime.now();
-        return !now.isAfter(deadline) && now.plusHours(hours).isAfter(deadline);
-    }
-
     public boolean isInProgress() {
         if(!done){
             for (SubTask st : subTasks) {
-                if (st.isDone()) {
-                    return true;
-                }
+                if (st.isDone()) return true;
             }
         }
         return false;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
+    // manajemen subtask
     public void syncStatusFromSubTasks() {
         if (subTasks.isEmpty()) {
             return;
@@ -142,7 +133,7 @@ public class Task {
         this.done = allCompleted;
     }
 
-     public List<SubTask> getSubTasks() {
+    public List<SubTask> getSubTasks() {
         return Collections.unmodifiableList(subTasks);
     }
 
@@ -151,6 +142,7 @@ public class Task {
             throw new InvalidTaskException("Subtask tidak boleh kosong");
         }
         subTasks.add(subTask);
+        syncStatusFromSubTasks();
     }
 
     public void removeSubTask(int index) {
@@ -181,5 +173,35 @@ public class Task {
             }
         }
         return (completedCount * 100.0) / subTasks.size();
+    }
+
+    // status
+    public Status getStatus() {
+        if (done) {
+            return Status.DONE;
+        } else if (isInProgress()) {
+            return Status.IN_PROGRESS;
+        } else if (isOverdue()) {
+            return Status.LATE;
+        } else {
+            return Status.NOT_DONE;
+        }
+    }
+
+    public boolean isOverdue() {
+        return !done && deadline != null && LocalDateTime.now().isAfter(deadline);
+    }
+
+    public boolean isDueWithinHours(long hours) {
+        if (done || deadline == null) {
+            return false;
+        }
+        LocalDateTime now = LocalDateTime.now();
+        return !now.isAfter(deadline) && now.plusHours(hours).isAfter(deadline);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%07s] %s (%s) - %s | %s", id, title, course, getFormattedDeadline(), getStatus().getLabel());
     }
 }
