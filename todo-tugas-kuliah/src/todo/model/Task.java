@@ -182,7 +182,7 @@ public class Task {
         } else if (isInProgress()) {
             return Status.IN_PROGRESS;
         } else if (isOverdue()) {
-            return Status.LATE;
+            return Status.OVERDUE;
         } else {
             return Status.NOT_DONE;
         }
