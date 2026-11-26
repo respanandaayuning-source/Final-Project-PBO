@@ -2,18 +2,22 @@ package todo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
+import todo.exception.InvalidTaskException;
 import todo.model.Task;
 
-/** Mencari tugas yang hampir jatuh tempo / terlambat. (Anggota 1) */
 public class ReminderService {
     private final TaskManager manager;
 
     public ReminderService(TaskManager manager) {
+        if (manager == null) {
+            throw new InvalidTaskException("Task Manager tidak boleh kosong");
+        }
         this.manager = manager;
     }
 
-    /** Tugas belum selesai yang deadline-nya dalam 24 jam ke depan. */
+    // tugas belum selesai dgn deadline dalam 24 jam ke depan
     public List<Task> getDueSoon() {
         List<Task> dueSoon = new ArrayList<>();
         for (Task t : manager.getAll()) {
@@ -21,25 +25,23 @@ public class ReminderService {
                 dueSoon.add(t);
             }
         }
+        dueSoon.sort(Comparator.comparing(Task::getDeadline));
         return dueSoon;
     }
 
-    /** Tugas belum selesai yang deadline-nya sudah lewat. */
+    // tugas deadline sudah lewat
     public List<Task> getOverdue() {
-        List<Task> overdue = new ArrayList<>();
-        for (Task t : manager.getAll()) {
-            if (t.isOverdue() && !t.isDone()) {
-                overdue.add(t);
-            }
-        }
+        List<Task> overdue = manager.getOverdueTasks();
+        overdue.sort(Comparator.comparing(Task::getDeadline));
         return overdue;
     }
 
+    // semua reminder
     public String getAllReminders() {
         List<Task> dueSoon = getDueSoon();
         List<Task> overdue = getOverdue();
         if (dueSoon.isEmpty() && overdue.isEmpty()) {
-            return null;
+            return "";
         }
         StringBuilder sb = new StringBuilder();
         if (!dueSoon.isEmpty()) {
