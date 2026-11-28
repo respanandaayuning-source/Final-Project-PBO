@@ -1,0 +1,186 @@
+/* ===== TOKEN WARNA ===== */
+.root {
+    -todo-bg:        #F4F4E9;
+    -todo-card:      #FFFFF9;
+    -todo-ink:       #283B29;
+    -todo-muted:     #77806D;
+    -todo-forest:    #344E37;
+    -todo-forest-hi: #52694B;
+    -todo-focus:     #263C23;
+    -todo-yellow:    #F3DB78;
+    -todo-sage:      #E6ECD9;
+    -todo-sage-2:    #DCE6D6;
+    -todo-bar:       #A3B177;
+    -todo-wip:       #F3EDCB;
+    -todo-review:    #EDE8DC;
+    -todo-input:     #F3F5EC;
+    -todo-danger-bg: #FBEEEA;
+    -todo-danger:    #B5523B;   /* perkiraan, cocokkan dengan ikon tempat sampah */
+
+    -fx-background-color: -todo-bg;
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 14px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.label, .text { -fx-text-fill: -todo-ink; }
+.muted { -fx-text-fill: -todo-muted; }
+
+/* ===== TIPOGRAFI ===== */
+.fraunces { -fx-font-family: "Fraunces"; }
+.timer         { -fx-font-size: 58px; }
+.page-title    { -fx-font-size: 44px; }
+.stat-number   { -fx-font-size: 37px; }
+.greeting      { -fx-font-size: 36px; }
+.day-number    { -fx-font-size: 32px; }
+.logo, .modal-title { -fx-font-size: 30px; }
+.section-title { -fx-font-size: 24px; }
+.stats-title   { -fx-font-size: 23px; }
+.agenda-title  { -fx-font-size: 18px; }
+
+.dm-regular { -fx-font-family: "DM Sans"; }
+.dm-medium  { -fx-font-family: "DM Sans Medium"; }
+.dm-bold    { -fx-font-family: "DM Sans Bold"; }
+.s10 { -fx-font-size: 10px; } .s11 { -fx-font-size: 11px; }
+.s12 { -fx-font-size: 12px; } .s13 { -fx-font-size: 13px; }
+.s14 { -fx-font-size: 14px; } .s15 { -fx-font-size: 15px; }
+.s16 { -fx-font-size: 16px; } .s17 { -fx-font-size: 17px; }
+
+.task-done .text { -fx-strikethrough: true; }
+
+/* ===== NAV BAR ===== */
+.nav-bar {
+    -fx-background-color: -todo-forest;
+    -fx-background-radius: 20;
+    -fx-padding: 0 28 0 28;
+    -fx-pref-height: 68px;
+    -fx-min-height: 68px;
+    -fx-alignment: center-left;
+}
+.nav-bar .logo { -fx-text-fill: -todo-card; }
+.nav-tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 12;
+    -fx-text-fill: -todo-sage;
+    -fx-font-family: "DM Sans Medium";
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+.nav-tab:hover  { -fx-background-color: rgba(255,255,255,0.08); }
+.nav-tab.active { -fx-background-color: -todo-forest-hi; -fx-text-fill: -todo-card; }
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: -todo-sage;
+    -fx-prompt-text-fill: -todo-sage;
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 14px;
+}
+
+/* ===== KARTU & PANEL ===== */
+.card {
+    -fx-background-color: -todo-card;
+    -fx-background-radius: 28;
+    -fx-effect: dropshadow(gaussian, rgba(40,59,41,0.06), 24, 0, 0, 6);
+}
+.focus-panel { -fx-background-color: -todo-focus; -fx-background-radius: 28; }
+.stats-panel { -fx-background-color: -todo-sage;  -fx-background-radius: 28; }
+
+/* ===== TOMBOL ===== */
+.btn-primary, .btn-secondary, .btn-yellow {
+    -fx-background-radius: 999;
+    -fx-padding: 12 22 12 22;
+    -fx-font-family: "DM Sans Medium";
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+.btn-primary   { -fx-background-color: -todo-forest; -fx-text-fill: -todo-card; }
+.btn-primary:hover { -fx-background-color: -todo-forest-hi; }
+.btn-secondary { -fx-background-color: -todo-sage;   -fx-text-fill: -todo-ink; }
+.btn-secondary:hover { -fx-background-color: -todo-sage-2; }
+.btn-yellow    { -fx-background-color: -todo-yellow; -fx-text-fill: -todo-ink; }
+
+.icon-btn {
+    -fx-background-color: -todo-sage;
+    -fx-background-radius: 12;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}
+.icon-btn-danger { -fx-background-color: -todo-danger-bg; }
+
+/* ===== CHIP (prioritas, kategori, status) ===== */
+.chip {
+    -fx-background-radius: 999;
+    -fx-padding: 4 12 4 12;
+    -fx-font-family: "DM Sans Medium";
+    -fx-font-size: 11px;
+    -fx-text-fill: -todo-ink;
+}
+.chip-prioritas  { -fx-background-color: -todo-yellow; }
+.chip-santai     { -fx-background-color: -todo-sage; }
+.chip-category   { -fx-background-color: -todo-sage; }
+.chip-rencana    { -fx-background-color: -todo-sage; }
+.chip-dikerjakan { -fx-background-color: -todo-wip; }
+.chip-review     { -fx-background-color: -todo-review; }
+.chip-selesai    { -fx-background-color: -todo-sage-2; }
+
+/* ===== PROGRESS ===== */
+.progress-bar { -fx-pref-height: 6px; -fx-min-height: 6px; }
+.progress-bar > .track {
+    -fx-background-color: #E1E6D2;
+    -fx-background-radius: 999;
+    -fx-background-insets: 0;
+}
+.progress-bar > .bar {
+    -fx-background-color: -todo-forest;
+    -fx-background-radius: 999;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* ===== CHECKBOX ===== */
+.check-box .box {
+    -fx-background-color: transparent;
+    -fx-border-color: #B9C2A8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 4;
+}
+.check-box:selected .box { -fx-background-color: #7BA05B; -fx-border-color: #7BA05B; } /* perkiraan */
+.check-box:selected .mark { -fx-background-color: white; }
+
+/* ===== INPUT FORM ===== */
+.todo-field {
+    -fx-background-color: -todo-card;
+    -fx-border-color: #D9DEC9;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-padding: 12 16 12 16;
+    -fx-font-family: "DM Sans";
+    -fx-font-size: 14px;
+}
+.todo-field:focused { -fx-border-color: -todo-forest-hi; -fx-border-width: 1.5; }
+.subtask-row { -fx-background-color: -todo-input; -fx-background-radius: 12; -fx-padding: 10 14 10 14; }
+
+
+
+.scroll-pane, .scroll-pane > .viewport { -fx-background-color: transparent; }
+.scroll-pane { -fx-background-insets: 0; -fx-padding: 0; }
+
+.nav-icon-btn { -fx-background-color: transparent; -fx-padding: 8; -fx-cursor: hand; }
+
+.nav-divider {
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-min-width: 1; -fx-pref-width: 1; -fx-max-width: 1;
+    -fx-min-height: 28; -fx-pref-height: 28; -fx-max-height: 28;
+}
+
+.search-field, .search-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0 0 0 10;
+    -fx-pref-width: 200;
+}
