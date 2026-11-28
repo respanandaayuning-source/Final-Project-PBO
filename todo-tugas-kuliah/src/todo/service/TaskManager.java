@@ -268,4 +268,9 @@ public class TaskManager {
             }
         }
     }
+
+    public void setAll(List<Task> list) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAll'");
+    }
 }
