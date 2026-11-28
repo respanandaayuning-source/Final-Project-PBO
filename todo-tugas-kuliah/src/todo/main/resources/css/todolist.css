@@ -164,3 +164,23 @@
 }
 .todo-field:focused { -fx-border-color: -todo-forest-hi; -fx-border-width: 1.5; }
 .subtask-row { -fx-background-color: -todo-input; -fx-background-radius: 12; -fx-padding: 10 14 10 14; }
+
+
+
+.scroll-pane, .scroll-pane > .viewport { -fx-background-color: transparent; }
+.scroll-pane { -fx-background-insets: 0; -fx-padding: 0; }
+
+.nav-icon-btn { -fx-background-color: transparent; -fx-padding: 8; -fx-cursor: hand; }
+
+.nav-divider {
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-min-width: 1; -fx-pref-width: 1; -fx-max-width: 1;
+    -fx-min-height: 28; -fx-pref-height: 28; -fx-max-height: 28;
+}
+
+.search-field, .search-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0 0 0 10;
+    -fx-pref-width: 200;
+}
