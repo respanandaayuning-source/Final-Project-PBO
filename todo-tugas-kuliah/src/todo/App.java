@@ -1,4 +1,3 @@
-
 package todo;
 
 import java.io.IOException;
@@ -21,37 +20,21 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-
-        // Membuat pengelola tugas dan penyimpanan
-        manager = new TaskManager();
-        storage = new FileTaskStorage("data/tasks.csv");
-
-        // Memuat data tugas dari file
-        try {
-            manager.setAll(storage.load());
-        } catch (IOException e) {
-            System.err.println("Gagal memuat data: " + e.getMessage());
-        }
-
-        // Membuat layanan pengingat
+        // Constructor ini sudah memuat data dari file dan menyimpan otomatis tiap perubahan
+        storage  = new FileTaskStorage("data/tasks.csv");
+        manager  = new TaskManager(storage);
         reminder = new ReminderService(manager);
 
-        // Membuat jendela utama
         MainFrame frame = new MainFrame(manager, reminder);
-
-        // Menampilkan aplikasi
         frame.show(stage);
 
-        // Menyimpan data ketika aplikasi ditutup
+        // Simpan sekali lagi saat ditutup (tidak merusak, hanya cadangan)
         stage.setOnCloseRequest(event -> {
             try {
                 storage.save(manager.getAll());
-                System.out.println("Data tugas berhasil disimpan.");
             } catch (IOException e) {
                 System.err.println("Gagal menyimpan data: " + e.getMessage());
             }
         });
     }
-
-
 }
